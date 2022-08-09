@@ -1,14 +1,19 @@
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
+#include "contacts.hpp"
+#include <iomanip>
 
-# include "bakabk.hpp"
-# include "contacts.hpp"
-
-class Phonebook
-{
+class Phonebook{
 	public:
-		contact *con;
-		int exit = 0;
+	Contact	con[8];
+	int		idx;
+	int		ex;
+	void	add(Phonebook *pb);
+	void	search(Phonebook *pb);
+	void	exit(Phonebook	*pb);
+	
+	Phonebook();
+	~Phonebook();
 };
 
 #endif

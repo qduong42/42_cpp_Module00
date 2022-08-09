@@ -2,11 +2,9 @@ NAME = bakabook
 
 CPP = c++
 
-CPPFLAGS = -Wall -Wextra -Werror
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-OPT_FLAGS = -std=c++98
-
-SRCS = bakabk.cpp
+SRCS = bakabk.cpp contacts.cpp phonebook.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

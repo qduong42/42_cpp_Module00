@@ -6,7 +6,7 @@
 /*   By: qduong <qduong@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 17:07:34 by qduong            #+#    #+#             */
-/*   Updated: 2022/07/30 17:31:27 by qduong           ###   ########.fr       */
+/*   Updated: 2022/07/30 18:29:50 by qduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define BAKABK_HPP
 
 #include "phonebook.hpp"
+#include "contacts.hpp"
 
 #include <cstdio>
 #include <cstdlib>
@@ -22,6 +23,5 @@
 # include <iomanip>
 # include <string>
 
-#define sstr std::string
 
 #endif

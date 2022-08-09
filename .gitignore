@@ -1,0 +1,8 @@
+*/*/preplan/
+*/*/*.dSYM
+*/*/*.png
+*/.vscode/
+The-C-20-Masterclass-Source-Code/
+theory.txt
+*.o
+*.vscode
