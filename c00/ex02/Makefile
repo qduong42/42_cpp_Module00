@@ -22,7 +22,7 @@ all:$(NAME)
 $(NAME): $(OBJS)
 	@echo $(Q) $(BLUE) Compiling account_test $(NC)$(Q)
 	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
-	@echo $(Q) $(GREEN)Run with ./account_test$(Q)
+	@echo $(Q) $(GREEN)Run with ./account_test$(NC)$(Q)
 
 test:
 	$(CPP) $(CPPFLAGS) main.cpp $(OBJS) -o test
