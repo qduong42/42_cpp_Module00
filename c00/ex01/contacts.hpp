@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CONTACTS_HPP
+#define CONTACTS_HPP
 
 # include <iostream>
 class Contact{
@@ -26,3 +27,5 @@ class Contact{
 		std::string _phone_number;
 		std::string _darkest_secret;
 };
+
+#endif

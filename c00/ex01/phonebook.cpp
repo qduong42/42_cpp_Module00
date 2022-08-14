@@ -1,12 +1,12 @@
 #include "PhoneBook.hpp"
 //why order matters? Error: field '_ex' initialized after field '_count': _idx(-1), _ex(0), _count(0)
 PhoneBook::PhoneBook(void) :  _idx(-1), _count(0), _ex(0), _width(10){
-	std::cout << "PhoneBook constructor called" << std::endl;
+	// std::cout << "PhoneBook constructor called" << std::endl;
 	return ;
 }
 
 PhoneBook::~PhoneBook(void){
-	std::cout << "Custom Destructor called" << std::endl;
+	// std::cout << "Custom Destructor called" << std::endl;
 	return ;
 }
 

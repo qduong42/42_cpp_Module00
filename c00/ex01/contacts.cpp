@@ -2,12 +2,12 @@
 
 //trying to initialise _first_name(0) here initialisation list segfaults, why?
 Contact::Contact(void):_first_name(""), _last_name(""), _nick_name(""), _phone_number(""), _darkest_secret("") {
-	std::cout << "Contact constructor called:" << std::endl;
+	// std::cout << "Contact constructor called:" << std::endl;
 	return ;
 }
 
 Contact::~Contact(void){
-	std::cout << "Contact Destructor called" <<std::endl;
+	// std::cout << "Contact Destructor called" <<std::endl;
 	return ;
 }
 
