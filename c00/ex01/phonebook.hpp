@@ -16,6 +16,11 @@ class PhoneBook{
 		void	search();
 		void	exit();
 		int		get_exit();
+		void add_contact(std::string first_name, 
+						 std::string last_name,
+						 std::string nick_name,
+						 std::string phone_number,
+						 std::string darkest_secret);
 		PhoneBook();
 		~PhoneBook();
 

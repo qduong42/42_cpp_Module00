@@ -10,15 +10,6 @@ PhoneBook::~PhoneBook(void){
 	return ;
 }
 
-void	PhoneBook::_idx_count(void){
-	if (this->_count != 8)
-		this->_count ++;
-	if (this->_idx == 7)
-		this->_idx = 0;
-	else
-		this->_idx += 1;
-}
-
 void	PhoneBook::add(){
 	std::string line;
 	this->_idx_count();
@@ -34,6 +25,15 @@ void	PhoneBook::add(){
 	this->_con[this->_idx].set_darkest_secret(line);
 }
 
+void	PhoneBook::_idx_count(void){
+	if (this->_count != 8)
+		this->_count ++;
+	if (this->_idx == 7)
+		this->_idx = 0;
+	else
+		this->_idx += 1;
+}
+
 std::string	PhoneBook::_add_prompt(std::string message){
 	while (1)
 	{
@@ -45,40 +45,29 @@ std::string	PhoneBook::_add_prompt(std::string message){
 			return (line);
 		}
 		else
-		std::cout  << message << " can not be empty!"<< std::endl;
+		std::cout  << message << "Field can not be empty!"<< std::endl;
 	}
 }
 
-
-std::string	PhoneBook::_truncate(std::string input){
-	if (input.size() > this->_width)
-	{
-		return (input.substr(0, this->_width - 1) + '.');
-	}
-	return (input);
+void	PhoneBook::search(){
+	PhoneBook::_std_prompt();
+	PhoneBook::_prompt_which();
+	return ;
 }
 
 void	PhoneBook::_std_prompt(){
+	std::cout << std::setw(this->_width + 1) << std::right << "Index|"
+	<< std::setw(this->_width + 1) << std::right << "_first_name|"
+	<< std::setw(this->_width + 1) << std::right << "_last_name|"
+	<< std::setw(this->_width + 1) << std::right << "nickname" << std::endl << std::endl;
 	for (size_t i = 0; i < this->_count; i++)
 	{
-		std::cout << std::setw(this->_width + 1) << std::right << "Index|"
-		<< std::setw(this->_width + 1) << std::right << "_first_name|"
-		<< std::setw(this->_width + 1) << std::right << "_last_name|"
-		<< std::setw(this->_width + 1) << std::right << "nickname" << std::endl << std::endl
-		<< std::setw(this->_width) << std::right << i + 1
+		std::cout << std::setw(this->_width) << std::right << i + 1
 		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].get_first_name())
 		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].get_last_name())
 		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].get_nick_name()) << std::endl;
 	}
 	return ;
-}
-
-void	PhoneBook::_show_contact(int index){
-	std::cout	<< "First Name: " << this->_con[index - 1].get_first_name() << std::endl
-				<< "Last Name: " << this->_con[index - 1].get_last_name() << std::endl
-				<< "Nick Name: " << this->_con[index - 1].get_nick_name() << std::endl
-				<< "Phone Number: " << this->_con[index - 1].get_phone_number() << std::endl
-				<< "Darkest Secret: " << this->_con[index - 1].get_darkest_secret() << std::endl;
 }
 
 //stoi not allowed, its only since c++ 11
@@ -94,10 +83,27 @@ void	PhoneBook::_prompt_which(){
 		PhoneBook::_show_contact(int_index);
 }
 
-void	PhoneBook::search(){
-	PhoneBook::_std_prompt();
-	PhoneBook::_prompt_which();
-	return ;
+void	PhoneBook::_show_contact(int index){
+	std::cout	<< "First Name:" << this->_con[index - 1].get_first_name() << std::endl
+				<< "Last Name:" << this->_con[index - 1].get_last_name() << std::endl
+				<< "Nick Name:" << this->_con[index - 1].get_nick_name() << std::endl
+				<< "Phone Number:" << this->_con[index - 1].get_phone_number() << std::endl
+				<< "Darkest Secret:" << this->_con[index - 1].get_darkest_secret() << std::endl;
+}
+
+std::string	PhoneBook::_truncate(std::string input){
+	if (input.size() > this->_width)
+	{
+		return (input.substr(0, this->_width - 1) + '.');
+	}
+	return (input);
+}
+
+
+
+int		PhoneBook::get_exit()
+{
+	return (this->_ex);
 }
 
 void	PhoneBook::exit(){
@@ -105,7 +111,15 @@ void	PhoneBook::exit(){
 	return ;
 }
 
-int		PhoneBook::get_exit()
-{
-	return (this->_ex);
+void	PhoneBook::add_contact(std::string first_name, 
+							 std::string last_name,
+							 std::string nick_name,
+							 std::string phone_number,
+							 std::string darkest_secret){
+	this->_idx_count();
+	this->_con[this->_idx].set_first_name(first_name);
+	this->_con[this->_idx].set_last_name(last_name);
+	this->_con[this->_idx].set_nick_name(nick_name);
+	this->_con[this->_idx].set_phone_number(phone_number);
+	this->_con[this->_idx].set_darkest_secret(darkest_secret);
 }

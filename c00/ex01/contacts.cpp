@@ -6,6 +6,11 @@ Contact::Contact(void):_first_name(""), _last_name(""), _nick_name(""), _phone_n
 	return ;
 }
 
+Contact::~Contact(void){
+	std::cout << "Contact Destructor called" <<std::endl;
+	return ;
+}
+
 void	Contact::set_first_name(std::string string){
 	this->_first_name = string;
 	return ;
@@ -49,9 +54,4 @@ std::string	Contact::get_phone_number(){
 
 std::string	Contact::get_darkest_secret(){
 	return (this->_darkest_secret);
-}
-
-Contact::~Contact(void){
-	std::cout << "Contact Destructor called" <<std::endl;
-	return ;
 }

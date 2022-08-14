@@ -4,7 +4,7 @@ CPP = c++
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-SRCS = main.cpp contacts.cpp PhoneBook.cpp
+SRCS = main.cpp contacts.cpp phonebook.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
