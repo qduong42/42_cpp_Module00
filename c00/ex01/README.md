@@ -9,18 +9,18 @@ Two classes
 -	stands for phonbebook contact
 
 Note:
--	phonebook/contacts instantiated as instance of PhoneBook class.
+-	PhoneBook/contacts instantiated as instance of PhoneBook class.
 -	Free to design class as you like. 
 -	inside class is private, outside is public
 
 Startup:
 
-Phonebook => Empty
+PhoneBook => Empty
 Usert prompted to enter 3 possible commands
 
 -> ADD:	save new contact
 -	Prompted input Info new contact 1 field at time.
--	All fields complete -> Contact added to Phonebook
+-	All fields complete -> Contact added to PhoneBook
 -	Fields: First name, Last name, Nickname, Phone number, Darkest secret
 -	NO FIELD EMPTY
 -> SEARCH:	display a specific contact

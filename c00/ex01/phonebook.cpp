@@ -1,37 +1,111 @@
-#include "phonebook.hpp"
-
-Phonebook::Phonebook() :  idx(0), ex(0){
-	std::cout << "custom constructor called" << std::endl;
-	std::cout << "this->ex:" << this->ex << std::endl;
-}
-
-Phonebook::~Phonebook(){
-
-} 
-
-void	Phonebook::add(Phonebook *bk){
-	if (idx > 7)
-		idx = 0;
-	std::cout << "Enter the contact's First Name:" << std::endl;
-	std::cin >> bk->con[idx].first_name;
-	std::cout << "Enter the contact's Last Name:" << std::endl;
-	std::cin >> bk->con[idx].last_name;
-	std::cout << "Enter the contact's Nick Name:" << std::endl;
-	std::cin >> bk->con[idx].nickname;
-	std::cout << "Enter the contact's Phone Number:" << std::endl;
-	std::cin >> bk->con[idx].phone_number;
-	std::cout << "Enter the contact's Darkest Secret:" << std::endl;
-	std::cin >> bk->con[idx].darkest_secret;
-	idx++;
-}
-
-void	Phonebook::search(Phonebook *bk){
-	(void) bk;
-	// std::cout << bk->idx << std::setw(10) << "|" std::endl;
+#include "PhoneBook.hpp"
+//why order matters? Error: field '_ex' initialized after field '_count': _idx(-1), _ex(0), _count(0)
+PhoneBook::PhoneBook(void) :  _idx(-1), _count(0), _ex(0), _width(10){
+	std::cout << "PhoneBook constructor called" << std::endl;
 	return ;
 }
 
-void	Phonebook::exit(Phonebook *bk){
-	bk->ex = 1;
+PhoneBook::~PhoneBook(void){
+	std::cout << "Custom Destructor called" << std::endl;
 	return ;
+}
+
+void	PhoneBook::_idx_count(void){
+	if (this->_count != 8)
+		this->_count ++;
+	if (this->_idx == 7)
+		this->_idx = 0;
+	else
+		this->_idx += 1;
+}
+
+void	PhoneBook::add(){
+	std::string line;
+	this->_idx_count();
+	line = this->_add_prompt("First Name");
+	this->_con[this->_idx].set_first_name(line);
+	line = this->_add_prompt("Last Name:");
+	this->_con[this->_idx].set_last_name(line);
+	line = this->_add_prompt("Nick Name:");
+	this->_con[this->_idx].set_nick_name(line);
+	line = this->_add_prompt("Phone Number:");
+	this->_con[this->_idx].set_phone_number(line);
+	line = this->_add_prompt("Darkest Secret:");
+	this->_con[this->_idx].set_darkest_secret(line);
+}
+
+std::string	PhoneBook::_add_prompt(std::string message){
+	while (1)
+	{
+		std::string line;
+		std::cout << "Enter the contact's " << message <<":";
+		getline(std::cin, line);
+		if (line.size() != 0)
+		{
+			return (line);
+		}
+		else
+		std::cout  << message << " can not be empty!"<< std::endl;
+	}
+}
+
+
+std::string	PhoneBook::_truncate(std::string input){
+	if (input.size() > this->_width)
+	{
+		return (input.substr(0, this->_width - 1) + '.');
+	}
+	return (input);
+}
+
+void	PhoneBook::_std_prompt(){
+	for (size_t i = 0; i < this->_count; i++)
+	{
+		std::cout << std::setw(this->_width + 1) << std::right << "Index|"
+		<< std::setw(this->_width + 1) << std::right << "_first_name|"
+		<< std::setw(this->_width + 1) << std::right << "_last_name|"
+		<< std::setw(this->_width + 1) << std::right << "nickname" << std::endl << std::endl
+		<< std::setw(this->_width) << std::right << i + 1
+		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].get_first_name())
+		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].get_last_name())
+		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].get_nick_name()) << std::endl;
+	}
+	return ;
+}
+
+void	PhoneBook::_show_contact(int index){
+	std::cout	<< "First Name: " << this->_con[index - 1].get_first_name() << std::endl
+				<< "Last Name: " << this->_con[index - 1].get_last_name() << std::endl
+				<< "Nick Name: " << this->_con[index - 1].get_nick_name() << std::endl
+				<< "Phone Number: " << this->_con[index - 1].get_phone_number() << std::endl
+				<< "Darkest Secret: " << this->_con[index - 1].get_darkest_secret() << std::endl;
+}
+
+//stoi not allowed, its only since c++ 11
+void	PhoneBook::_prompt_which(){
+	std::string index;
+	std::cout << "Enter an index to display:";
+	getline(std::cin, index);
+	int int_index;
+	int_index = atoi(index.c_str());
+	if (int_index < 1 || int_index > 8)
+		std::cout << "Invalid Index" << std::endl;
+	else
+		PhoneBook::_show_contact(int_index);
+}
+
+void	PhoneBook::search(){
+	PhoneBook::_std_prompt();
+	PhoneBook::_prompt_which();
+	return ;
+}
+
+void	PhoneBook::exit(){
+	this->_ex = 1;
+	return ;
+}
+
+int		PhoneBook::get_exit()
+{
+	return (this->_ex);
 }

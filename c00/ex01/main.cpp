@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bakabk.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: qduong <qduong@students.42wolfsburg.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 16:14:00 by qduong            #+#    #+#             */
-/*   Updated: 2022/08/01 17:34:03 by qduong           ###   ########.fr       */
+/*   Updated: 2022/08/14 11:50:45 by qduong           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "bakabk.hpp"
+# include "PhoneBook.hpp"
 
 void	kawaii(){
 	std::cout << "::: (\\_(\\" << std::endl;
@@ -18,27 +18,29 @@ void	kawaii(){
 	std::cout << "•.. (,('')('') " << std::endl;
 }
 
-void	handler(std::string input, Phonebook *bk){
+void	handler(std::string input, PhoneBook *bk){
 	if (input == "ADD")
-		bk->add(bk);
+		bk->add();
 	else if (input == "SEARCH")
-		bk->search(bk);
+		bk->search();
 	else if (input == "EXIT")
-		bk->exit(bk);
+		bk->exit();
 	else
+	{
+		std::cout << "Enter a valid command! cASe_SeNsiTiVe :D" << std::endl;
 		return ;
+	}
 }
 
 int main (void){
-	Phonebook	bk;
-	std::string	input;
+	PhoneBook	bk;
+	std::string	input = "";
 
 	kawaii();
-	printf("%d\n", bk.ex);
-	while (!bk.ex)
+	while (!bk.get_exit())
 	{
 		std::cout << "Enter one of the following commands: ADD, SEARCH, EXIT" << std::endl;
-		std::cin >> input;
+		std::getline(std::cin, input);
 		handler(input, &bk);
 	}
 	return (0);

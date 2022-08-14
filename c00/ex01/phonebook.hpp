@@ -1,19 +1,35 @@
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#pragma once
 #include "contacts.hpp"
 #include <iomanip>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+# include <iostream>
+# include <iomanip>
+# include <string>
 
-class Phonebook{
+class PhoneBook{
+
 	public:
-	Contact	con[8];
-	int		idx;
-	int		ex;
-	void	add(Phonebook *pb);
-	void	search(Phonebook *pb);
-	void	exit(Phonebook	*pb);
-	
-	Phonebook();
-	~Phonebook();
-};
 
-#endif
+		void	add();
+		void	search();
+		void	exit();
+		int		get_exit();
+		PhoneBook();
+		~PhoneBook();
+
+	private:
+
+		Contact	_con[8];
+		int		_idx;
+		size_t	_count;
+		int		_ex;
+		size_t const _width;
+		void	_idx_count(void);
+		std::string	_add_prompt(std::string message);
+		void	_std_prompt();
+		void	_prompt_which();
+		std::string		_truncate(std::string input);
+		void	_show_contact(int index);
+};
