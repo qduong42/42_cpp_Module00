@@ -8,11 +8,19 @@ SRCS = megaphone.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
+NL		:= \n
+Q		:= "
+NC		:= \033[0m
+RED 	:= \033[1;31m
+GREEN 	:= \033[1;32m
+BLUE 	:= \033[1;34m
+PURPLE	:= \033[35;1m
 
 all:$(NAME)
 
 $(NAME): $(OBJS)
 	$(CPP) $(CPPFLAGS) -g $(SRCS) -o $(NAME)
+	@echo ${Q}${NL}${BLUE} run make test to execute PDF test ${NC}${Q}
 
 clean:
 	rm *.o
