@@ -24,7 +24,8 @@ $(NAME): $(OBJS)
 	@echo ${Q} ${GREEN} Hint: Uncomment line 35-45 and 52 in main.cpp to populate phonebook with given contacts${Q}
 
 clean:
-	rm *.o
+	$(RM) *.o
+	rm -rf *.dSYM
 
 fclean:
 	$(RM) *.o

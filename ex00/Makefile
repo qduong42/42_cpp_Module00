@@ -23,7 +23,8 @@ $(NAME): $(OBJS)
 	@echo ${Q}${NL}${BLUE} run make test to execute PDF test ${NC}${Q}
 
 clean:
-	rm *.o
+	$(RM) *.o
+	rm -rf *.dSYM
 
 fclean:
 	$(RM) *.o

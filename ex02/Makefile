@@ -29,7 +29,7 @@ test:
 	./test
 
 clean:
-	rm *.o
+	$(RM) *.o
 
 fclean:
 	$(RM) *.o
