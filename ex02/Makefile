@@ -1,12 +1,12 @@
 NAME = account_test
 
-CPP = c++
+CC = clang++
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 
 SRCS = tests.cpp Account.cpp
 
-OBJS = $(SRCS:.cpp=.o)
+OBJS = $(SRCS:%.cpp=%.o)
 
 NL		:= \n
 Q		:= "
@@ -18,23 +18,21 @@ PURPLE	:= \033[35;1m
 
 all:$(NAME)
 
+$(OBJS): %.o: %.cpp
+	$(CC) -c $(CFLAGS) $< -o $@
 
 $(NAME): $(OBJS)
 	@echo $(Q) $(BLUE) Compiling account_test $(NC)$(Q)
-	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo $(Q) $(GREEN)Run with ./account_test$(NC)$(Q)
 
-test:
-	$(CPP) $(CPPFLAGS) main.cpp $(OBJS) -o test
-	./test
-
 clean:
-	$(RM) *.o
+	$(RM) $(OBJS)
+	$(RM) *.dSYM
 
-fclean:
-	$(RM) *.o
+fclean:clean
 	$(RM) $(NAME)
 
 re:	fclean all
 
-.PHONY: all bonus clean fclean re test
+.PHONY: clean fclean re

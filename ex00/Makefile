@@ -1,12 +1,15 @@
-NAME = megaphone
+NAME := megaphone
 
-CPP = c++
+CC := clang++
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98
+RM := rm -rf
 
-SRCS = megaphone.cpp
+CFLAGS := -Wall -Wextra -Werror -std=c++98 -g
 
-OBJS = $(SRCS:.cpp=.o)
+SRCS := megaphone.cpp
+
+OBJS:= $(SRCS:%.cpp=%.o)
+
 
 NL		:= \n
 Q		:= "
@@ -16,18 +19,20 @@ GREEN 	:= \033[1;32m
 BLUE 	:= \033[1;34m
 PURPLE	:= \033[35;1m
 
+$(OBJS) : %.o: %.cpp
+	$(CC) -c $(CFLAGS) $< -o $@
+
 all:$(NAME)
 
 $(NAME): $(OBJS)
-	$(CPP) $(CPPFLAGS) -g $(SRCS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo ${Q}${NL}${BLUE} run make test to execute PDF test ${NC}${Q}
 
 clean:
-	$(RM) *.o
-	rm -rf *.dSYM
+	$(RM) $(OBJS)
+	$(RM) *.dSYM
 
-fclean:
-	$(RM) *.o
+fclean:clean
 	$(RM) $(NAME)
 
 re:	fclean all
@@ -37,4 +42,4 @@ test:	$(NAME)
 	./megaphone Damnit " ! " "Sorry students, I thought this thing was off."
 	./megaphone
 
-.PHONY: all bonus clean fclean re test
+.PHONY: clean fclean re

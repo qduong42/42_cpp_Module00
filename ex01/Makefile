@@ -1,12 +1,14 @@
-NAME = bakabook
+NAME := bakabook
 
-CPP = c++
+CC := clang++
 
-CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -g
+RM := rm -rf
 
-SRCS = main.cpp contacts.cpp phonebook.cpp
+CFLAGS := -Wall -Wextra -Werror -std=c++98 -g
 
-OBJS = $(SRCS:.cpp=.o)
+SRCS := main.cpp contacts.cpp phonebook.cpp
+
+OBJS:= $(SRCS:%.cpp=%.o)
 
 NL		:= \n
 Q		:= "
@@ -16,21 +18,23 @@ GREEN 	:= \033[1;32m
 BLUE 	:= \033[1;34m
 PURPLE	:= \033[35;1m
 
+$(OBJS) : %.o: %.cpp
+	$(CC) -c $(CFLAGS) $< -o $@
+
 all:$(NAME)
 
 $(NAME): $(OBJS)
-	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo ${Q}${NL} ${BLUE} run program with ./bakabook ${Q}
 	@echo ${Q} ${GREEN} Hint: Uncomment line 35-45 and 52 in main.cpp to populate phonebook with given contacts${Q}
 
 clean:
-	$(RM) *.o
-	rm -rf *.dSYM
+	$(RM) $(OBJS)
+	$(RM) *.dSYM
 
-fclean:
-	$(RM) *.o
+fclean:clean
 	$(RM) $(NAME)
 
 re:	fclean all
 
-.PHONY: all bonus clean fclean re test
+.PHONY: clean fclean re
