@@ -2,10 +2,8 @@
 *.o
 *.png
 .vscode
-The-C-20-Masterclass-Source-Code/
-theory.txt
-*.vscode
 *.pdf
 ex00/megaphone
 ex01/bakabook
 ex02/account_test
+*.md
