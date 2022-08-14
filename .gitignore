@@ -1,8 +1,11 @@
-*/*/preplan/
-*/*/*.dSYM
-*/*/*.png
-*/.vscode/
+*.dSYM
+*.o
+*.png
+.vscode
 The-C-20-Masterclass-Source-Code/
 theory.txt
-*.o
 *.vscode
+*.pdf
+ex00/megaphone
+ex01/bakabook
+ex02/account_test

@@ -19,7 +19,7 @@ PURPLE	:= \033[35;1m
 all:$(NAME)
 
 $(NAME): $(OBJS)
-	$(CPP) $(CPPFLAGS) $(SRCS) -o $(NAME)
+	$(CPP) $(CPPFLAGS) $(OBJS) -o $(NAME)
 	@echo ${Q}${NL} ${BLUE} run program with ./bakabook ${Q}
 	@echo ${Q} ${GREEN} Hint: Uncomment line 35-45 and 52 in main.cpp to populate phonebook with given contacts${Q}
 
