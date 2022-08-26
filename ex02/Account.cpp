@@ -114,6 +114,7 @@ void Account::displayStatus()const{
 	return ;
 }
 
+//timestamp wrong format -> should be redefined
 void Account::_displayTimestamp(){
-	std::cout << "[" << std::time(nullptr) << "]";
+	std::cout << "[" << time(NULL) << "]";
 }

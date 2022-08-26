@@ -37,10 +37,10 @@ class PhoneBook{
 		size_t			_count;
 		int				_ex;
 		size_t const	_width;
-		void			_idx_count(void);
-		std::string		_add_prompt(std::string message);
+		void			_idxCount(void);
+		std::string		_addPrompt(std::string message);
 		void			_std_prompt();
-		void			_prompt_which();
+		void			_promptWhich();
 		std::string		_truncate(std::string input);
 		void			_show_contact(int index);
 };

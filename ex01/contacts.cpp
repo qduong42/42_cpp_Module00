@@ -1,7 +1,7 @@
-#include "contacts.hpp"
+#include "Contacts.hpp"
 
-//trying to initialise _first_name(0) here initialisation list segfaults, why?
-Contact::Contact(void):_first_name(""), _last_name(""), _nick_name(""), _phone_number(""), _darkest_secret("") {
+//trying to initialise _firstName(0) here initialisation list segfaults, why?
+Contact::Contact(void):_firstName(""), _lastName(""), _nickName(""), _phoneNumber(""), _darkestSecret("") {
 	// std::cout << "Contact constructor called:" << std::endl;
 	return ;
 }
@@ -11,47 +11,47 @@ Contact::~Contact(void){
 	return ;
 }
 
-void	Contact::set_first_name(std::string string){
-	this->_first_name = string;
+void	Contact::setFirstName(std::string string){
+	this->_firstName = string;
 	return ;
 }
 
-void	Contact::set_last_name(std::string string){
-	this->_last_name = string;
+void	Contact::setLastName(std::string string){
+	this->_lastName = string;
 	return ;
 }
 
-void	Contact::set_nick_name(std::string string){
-	this->_nick_name = string;
+void	Contact::setNickName(std::string string){
+	this->_nickName = string;
 	return ;
 }
 
-void	Contact::set_phone_number(std::string string){
-	this->_phone_number = string;
+void	Contact::setPhoneNumber(std::string string){
+	this->_phoneNumber = string;
 	return ;
 }
 
-void	Contact::set_darkest_secret(std::string string){
-	this->_darkest_secret = string;
+void	Contact::setDarkestSecret(std::string string){
+	this->_darkestSecret = string;
 	return ;
 }
 
-std::string	Contact::get_first_name(){
-	return (this->_first_name);
+std::string	Contact::getFirstName()const{
+	return (this->_firstName);
 }
 
-std::string	Contact::get_last_name(){
-	return (this->_last_name);
+std::string	Contact::getLastName()const{
+	return (this->_lastName);
 }
 
-std::string	Contact::get_nick_name(){
-	return (this->_nick_name);
+std::string	Contact::getNickName()const{
+	return (this->_nickName);
 }
 
-std::string	Contact::get_phone_number(){
-	return (this->_phone_number);
+std::string	Contact::getPhoneNumber()const{
+	return (this->_phoneNumber);
 }
 
-std::string	Contact::get_darkest_secret(){
-	return (this->_darkest_secret);
+std::string	Contact::getDarkestSecret()const{
+	return (this->_darkestSecret);
 }

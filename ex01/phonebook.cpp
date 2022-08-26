@@ -12,20 +12,20 @@ PhoneBook::~PhoneBook(void){
 
 void	PhoneBook::add(){
 	std::string line;
-	this->_idx_count();
-	line = this->_add_prompt("First Name");
-	this->_con[this->_idx].set_first_name(line);
-	line = this->_add_prompt("Last Name:");
-	this->_con[this->_idx].set_last_name(line);
-	line = this->_add_prompt("Nick Name:");
-	this->_con[this->_idx].set_nick_name(line);
-	line = this->_add_prompt("Phone Number:");
-	this->_con[this->_idx].set_phone_number(line);
-	line = this->_add_prompt("Darkest Secret:");
-	this->_con[this->_idx].set_darkest_secret(line);
+	this->_idxCount();
+	line = this->_addPrompt("First Name");
+	this->_con[this->_idx].setFirstName(line);
+	line = this->_addPrompt("Last Name:");
+	this->_con[this->_idx].setLastName(line);
+	line = this->_addPrompt("Nick Name:");
+	this->_con[this->_idx].setNickName(line);
+	line = this->_addPrompt("Phone Number:");
+	this->_con[this->_idx].setPhoneNumber(line);
+	line = this->_addPrompt("Darkest Secret:");
+	this->_con[this->_idx].setDarkestSecret(line);
 }
 
-void	PhoneBook::_idx_count(void){
+void	PhoneBook::_idxCount(void){
 	if (this->_count != 8)
 		this->_count ++;
 	if (this->_idx == 7)
@@ -34,7 +34,7 @@ void	PhoneBook::_idx_count(void){
 		this->_idx += 1;
 }
 
-std::string	PhoneBook::_add_prompt(std::string message){
+std::string	PhoneBook::_addPrompt(std::string message){
 	while (1)
 	{
 		std::string line;
@@ -51,44 +51,44 @@ std::string	PhoneBook::_add_prompt(std::string message){
 
 void	PhoneBook::search(){
 	PhoneBook::_std_prompt();
-	PhoneBook::_prompt_which();
+	PhoneBook::_promptWhich();
 	return ;
 }
 
 void	PhoneBook::_std_prompt(){
 	std::cout << std::setw(this->_width + 1) << std::right << "Index|"
-	<< std::setw(this->_width + 1) << std::right << "_first_name|"
-	<< std::setw(this->_width + 1) << std::right << "_last_name|"
+	<< std::setw(this->_width + 1) << std::right << "_firstName|"
+	<< std::setw(this->_width + 1) << std::right << "_lastName|"
 	<< std::setw(this->_width + 1) << std::right << "nickname" << std::endl << std::endl;
 	for (size_t i = 0; i < this->_count; i++)
 	{
 		std::cout << std::setw(this->_width) << std::right << i + 1
-		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].get_first_name())
-		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].get_last_name())
-		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].get_nick_name()) << std::endl;
+		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].getFirstName())
+		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].getLastName())
+		<< "|" << std::setw(this->_width) << std::right << this->_truncate(this->_con[i].getNickName()) << std::endl;
 	}
 	return ;
 }
 
 //stoi not allowed, its only since c++ 11
-void	PhoneBook::_prompt_which(){
+void	PhoneBook::_promptWhich(){
 	std::string index;
 	std::cout << "Enter an index to display:";
 	getline(std::cin, index);
-	int int_index;
+	size_t int_index;
 	int_index = atoi(index.c_str());
-	if (int_index < 1 || int_index > 8)
+	if (int_index < 1 || int_index > 8 || int_index > this->_count)
 		std::cout << "Invalid Index" << std::endl;
 	else
 		PhoneBook::_show_contact(int_index);
 }
 
 void	PhoneBook::_show_contact(int index){
-	std::cout	<< "First Name:" << this->_con[index - 1].get_first_name() << std::endl
-				<< "Last Name:" << this->_con[index - 1].get_last_name() << std::endl
-				<< "Nick Name:" << this->_con[index - 1].get_nick_name() << std::endl
-				<< "Phone Number:" << this->_con[index - 1].get_phone_number() << std::endl
-				<< "Darkest Secret:" << this->_con[index - 1].get_darkest_secret() << std::endl;
+	std::cout	<< "First Name:" << this->_con[index - 1].getFirstName() << std::endl
+				<< "Last Name:" << this->_con[index - 1].getLastName() << std::endl
+				<< "Nick Name:" << this->_con[index - 1].getNickName() << std::endl
+				<< "Phone Number:" << this->_con[index - 1].getPhoneNumber() << std::endl
+				<< "Darkest Secret:" << this->_con[index - 1].getDarkestSecret() << std::endl;
 }
 
 std::string	PhoneBook::_truncate(std::string input){
@@ -116,10 +116,10 @@ void	PhoneBook::add_contact(std::string first_name,
 							 std::string nick_name,
 							 std::string phone_number,
 							 std::string darkest_secret){
-	this->_idx_count();
-	this->_con[this->_idx].set_first_name(first_name);
-	this->_con[this->_idx].set_last_name(last_name);
-	this->_con[this->_idx].set_nick_name(nick_name);
-	this->_con[this->_idx].set_phone_number(phone_number);
-	this->_con[this->_idx].set_darkest_secret(darkest_secret);
+	this->_idxCount();
+	this->_con[this->_idx].setFirstName(first_name);
+	this->_con[this->_idx].setLastName(last_name);
+	this->_con[this->_idx].setNickName(nick_name);
+	this->_con[this->_idx].setPhoneNumber(phone_number);
+	this->_con[this->_idx].setDarkestSecret(darkest_secret);
 }

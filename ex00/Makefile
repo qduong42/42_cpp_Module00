@@ -1,6 +1,6 @@
 NAME := megaphone
 
-CC := clang++
+CC := c++
 
 RM := rm -rf
 
@@ -19,14 +19,15 @@ GREEN 	:= \033[1;32m
 BLUE 	:= \033[1;34m
 PURPLE	:= \033[35;1m
 
-$(OBJS) : %.o: %.cpp
-	$(CC) -c $(CFLAGS) $< -o $@
 
 all:$(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 	@echo ${Q}${NL}${BLUE} run make test to execute PDF test ${NC}${Q}
+
+$(OBJS) : %.o: %.cpp
+	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
 	$(RM) $(OBJS)
