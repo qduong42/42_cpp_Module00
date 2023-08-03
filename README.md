@@ -1,4 +1,4 @@
-# - @42Wolfsburg
+# Cpp Module 00 - @42Wolfsburg
 
 ## About
 
@@ -17,9 +17,9 @@ Those versions are the ones used during development.
 1. Download/Clone this repo
 
         git clone https://github.com/qduong42/42_cpp_Module00
-2. `cd` into the root directory and run `make`
+2. `cd` into the exercise directories and run `make`
 
-        cd 42_cpp_Module00
+        cd 42_cpp_Module00/ex00 | cd 42_cpp_Module00/ex01 | cd 42_cpp_Module00/ex02
         make
 
 ### Running the program
